@@ -1,0 +1,34 @@
+# Custom 710006, no ports
+"%{WORD:[cisco][asa][network][transport]} (?:request|access) %{CISCO_ACTION:[cisco][asa][outcome]} from %{IP:[source][ip]} to %{DATA:[observer][egress][interface][name]}:%{IP:[destination][ip]}",
+# Custom 313004, different properties
+"%{CISCO_ACTION:[cisco][asa][outcome]} %{WORD:[cisco][asa][network][transport]} type=%{INT:[cisco][asa][icmp_type]:int}, from %{WORD} %{IP:[source][ip]} on interface %{NOTSPACE:[observer][egress][interface][name]}(?: to %{IP:[destination][ip]})?",
+# Custom ASA-4-402116
+"Received an %{WORD:protocol} packet \(SPI=%{DATA:spi}, sequence number=%{DATA:seq_num}\) from %{IP:remote_ip} \(user= %{USERNAME:username}\) to %{IP:local_ip}\. .*destination as %{DATA:pkt_daddr}, its source as %{DATA:pkt_saddr}, and its protocol as %{INT:pkt_prot}\. .*local proxy as %{IP:id_daddr}/%{IP:id_dmask}/%{WORD:id_dprot}/%{INT:id_dport} .*proxy as %{IP:id_saddr}/%{IP:id_smask}/%{WORD:id_sprot}/%{INT:id_sport}\.",
+# Custom ASA-6-113004
+"AAA user %{WORD:aaa_type} Successful \: server =.*%{IPORHOST:server_ip_address} \: user = %{USER:user}",
+# Custom ASA-4-106016
+"\(%{IP:ip_to_spoof}\) to %{IP:ip_spoofing} on interface %{WORD:interface_name}",
+# Custom ASA-5-611103 
+"Uname: %{USER:user}",
+# Custom ASA-6-315011
+"%{IP:client_ip} on interface %{WORD:interface_name} for user \"%{USER:user}\"",
+# Custom ASA-5-111008
+"User \'%{USER:user}\' executed the \'%{DATA:action}\'",
+# Custom ASA-6-302303
+"Built TCP state-bypass connection %{INT:conn_id}\sfrom\s%{DATA:initiator_interface}:%{IP:real_ip}/%{INT:real_port}\s\(%{IP:mapped_ip}/%{INT:mapped_port}\)\sto\s%{DATA:responder_interface}:%{IP:real_ip}/%{INT:real_port}\s\(%{IP:mapped_ip}/%{INT:mapped_port}\)",
+# Custom ASA-6-302304
+"Teardown TCP state-bypass connection %{INT:conn_id}\sfrom\s%{DATA:initiator_interface}:%{IP:ip}/%{INT:port}\sto\s%{DATA:responder_interface}:%{IP:ip}/%{INT:port}\sduration\s*%{TIME:duration}\sbytes\s%{INT:bytes}\s%{GREEDYDATA:reason}",
+# Custom ASA-5-752016
+".*Map Tag = %{DATA:mapTag}.\sMap Sequence Number \=\s%{INT:mapSeq}\.",
+# Custom ASA-5-750001
+"Local:%{IP:local_IP}:%{INT:local_port} Remote:%{IP:remote_IP}:%{INT:remote_port} Username:%{USER:username}.*local traffic selector = Address Range: (?<local_range>%{IP}-%{IP}) Protocol: %{INT:local_protocol} Port Range: (?<local_port_range>%{INT}-%{INT}); remote traffic selector = Address Range: (?<remote_range>%{IP}-%{IP}) Protocol: %{INT:remote_protocol} Port Range: (?<remote_port_range>%{INT}-%{INT})",
+# Custom ASA-5-746014,ASA-5-746015
+"user-identity: %{SYSLOG5424SD} %{URIHOST:fqdn} %{WORD:action} %{IP:ip}(\s?%{GREEDYDATA:status})",
+# Custom  ASA-4-106010
+"Deny inbound protocol %{INT} src %{DATA:src_ifname}:%{IP:source_address} dst %{DATA:dst_ifname}:%{IP:dst_address}",
+# Custom ASA-4-313005
+"No matching connection for %{WORD} error message: %{WORD:protocol} src %{DATA:src_ifname}:%{IP:src_ip} dst %{DATA:dst_ifname}:%{IP:dst_ip} \(%{DATA:sg_info}\) on.*:\s%{GREEDYDATA:orig_req}",
+# Custom ASA-4-750003
+"Local:%{IP:local_IP}:%{INT:local_port} Remote:%{IP:remote_IP}:%{INT:remote_port} Username:%{USER:username} %{GREEDYDATA:error}",
+# Custom ASA-6-108005
+"%{DATA:actionclass}: Received ESMTP %{WORD:req_resp} from %{DATA:src_ifname}:%{IP:ip}/%{INT:port} to %{DATA:dst_ifname}:%{IP:ip}/%{INT:port}; %{GREEDYDATA:info}"
